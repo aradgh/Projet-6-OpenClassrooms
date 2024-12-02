@@ -1,1 +1,1 @@
-# Projet-6-OpenClassrooms
+# Projet 6 - OpenClassrooms
