@@ -18,7 +18,7 @@ CREATE TABLE Account
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     owner_id INT            NOT NULL,
-    amount   DECIMAL(10, 2) NOT NULL,
+    balance DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (owner_id) REFERENCES User (id)
 );
 
@@ -51,7 +51,7 @@ VALUES ('alice', 'alice@example.com', 'hashed_password1'),
        ('charlie', 'charlie@example.com', 'hashed_password3');
 
 -- Insertion des comptes
-INSERT INTO Account (owner_id, amount)
+INSERT INTO Account (owner_id, balance)
 VALUES (1, 100.00),
        (2, 200.50),
        (3, 150.75);
