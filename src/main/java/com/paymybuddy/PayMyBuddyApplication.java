@@ -1,13 +1,13 @@
-package com.paymybuddy.projet_6_openclassrooms;
+package com.paymybuddy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Projet6OpenClassroomsApplication {
+public class PayMyBuddyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Projet6OpenClassroomsApplication.class, args);
+        SpringApplication.run(PayMyBuddyApplication.class, args);
     }
 
 }
