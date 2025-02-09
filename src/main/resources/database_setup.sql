@@ -67,3 +67,7 @@ INSERT INTO User_Connections (user_id, connection_id)
 VALUES (1, 2),
        (1, 3),
        (2, 3);
+
+-- Test des données sécurisées
+INSERT INTO User (username, email, password)
+VALUES ('indiana_jones', CONCAT(LEFT('indiana.jones@wanadoo.com', 3), '***@***.com'), SHA2('holy_grail', 256));
