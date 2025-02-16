@@ -30,8 +30,8 @@ CREATE TABLE Transaction (
                              amount      DECIMAL(10, 2) NOT NULL,
                              timestamp   DATETIME NOT NULL,
                              description VARCHAR(255),
-                             FOREIGN KEY (sender_id) REFERENCES User(id),
-                             FOREIGN KEY (receiver_id) REFERENCES User(id)
+                             FOREIGN KEY (sender_id) REFERENCES Account(id),
+                             FOREIGN KEY (receiver_id) REFERENCES Account(id)
 );
 
 -- Création de la table de la relation Many-to-Many pour les connexions utilisateur
