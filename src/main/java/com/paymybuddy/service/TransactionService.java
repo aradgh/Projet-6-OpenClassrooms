@@ -30,7 +30,7 @@ public class TransactionService {
 
     //    @Transactional
     // Tester avec ou sans l'annotation pour voir le comportement
-    public Transaction createTransaction(User sender, User receiver, BigDecimal amount, String description) {
+    public Transaction createTransaction(Account sender, Account receiver, BigDecimal amount, String description) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Amount must be greater than zero.");
         }

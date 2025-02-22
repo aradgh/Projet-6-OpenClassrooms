@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,6 +33,10 @@ public class AccountService {
 
     public List<Account> getAccountsByUserId(Long userId) {
         return accountRepository.findByOwnerId(userId);
+    }
+
+    public Optional<Account> getAccountById(Long id) {
+        return accountRepository.findById(id);
     }
 
     public void updateBalance(Long accountId, BigDecimal amount) {

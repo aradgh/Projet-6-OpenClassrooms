@@ -1,7 +1,9 @@
 package com.paymybuddy.controller;
 
+import com.paymybuddy.model.Account;
 import com.paymybuddy.model.Transaction;
 import com.paymybuddy.model.User;
+import com.paymybuddy.service.AccountService;
 import com.paymybuddy.service.TransactionService;
 import com.paymybuddy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +19,30 @@ import java.util.Optional;
 public class TransactionController {
 
     private final TransactionService transactionService;
-    private final UserService userService;
+    private final AccountService accountService;
 
     @Autowired
-    public TransactionController(TransactionService transactionService, UserService userService) {
+    public TransactionController(TransactionService transactionService,
+                                 AccountService accountService
+    ) {
         this.transactionService = transactionService;
-        this.userService = userService;
+        this.accountService = accountService;
     }
 
     // CREATE - Créer une transaction
     @PostMapping
     public ResponseEntity<Transaction> createTransaction(
-        @RequestParam Long senderId, @RequestParam Long receiverId, @RequestParam BigDecimal amount,
+        @RequestParam Long senderAccountId,
+        @RequestParam Long receiverAccountId,
+        @RequestParam BigDecimal amount,
         @RequestParam(required = false) String description
     ) {
+        Optional<Account> senderAccount = accountService.getAccountById(senderAccountId);
+        Optional<Account> receiverAccount = accountService.getAccountById(receiverAccountId);
 
-        Optional<User> sender = userService.getUserById(senderId);
-        Optional<User> receiver = userService.getUserById(receiverId);
-
-        if (sender.isPresent() && receiver.isPresent()) {
+        if (senderAccount.isPresent() && receiverAccount.isPresent()) {
             Transaction transaction = transactionService.createTransaction(
-                sender.get(), receiver.get(), amount, description);
+                senderAccount.get(), receiverAccount.get(), amount, description);
             return ResponseEntity.ok(transaction);
         } else {
             return ResponseEntity.notFound().build();
