@@ -10,6 +10,7 @@ USE pay_my_buddy;
 -- Création de la table User (sans colonne username)
 CREATE TABLE User (
                       id       BIGINT AUTO_INCREMENT PRIMARY KEY,
+                      username VARCHAR(255) NOT NULL,
                       email    VARCHAR(255) NOT NULL UNIQUE,
                       password VARCHAR(255) NOT NULL
 );
@@ -44,11 +45,10 @@ CREATE TABLE User_Connections (
 );
 
 -- Insertion des utilisateurs
-INSERT INTO User (email, password)
-VALUES
-    ('alice@example.com', 'hashed_password1'),
-    ('bob@example.com', 'hashed_password2'),
-    ('charlie@example.com', 'hashed_password3');
+INSERT INTO User (username, email, password)
+VALUES ('alice', 'alice@example.com', 'hashed_password1'),
+       ('bob', 'bob@example.com', 'hashed_password2'),
+       ('charlie', 'charlie@example.com', 'hashed_password3');
 
 -- Insertion des comptes (la colonne est désormais user_id)
 INSERT INTO Account (user_id, balance)
@@ -72,6 +72,6 @@ VALUES
     (2, 3);
 
 -- Insertion d'un utilisateur test avec données sécurisées
-INSERT INTO User (email, password)
+INSERT INTO User (username, email, password)
 VALUES
-    ('indiana.jones@wanadoo.com', SHA2('holy_grail', 256));
+    ('Indiana Jone', 'indiana.jones@wanadoo.com', SHA2('holy_grail', 256));

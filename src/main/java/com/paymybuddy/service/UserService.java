@@ -24,13 +24,18 @@ public class UserService {
         return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public User registerUser(String email, String password) {
+    public User registerUser(String username, String email, String password) {
         if (userRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("Email already in use.");
         }
-        User user = User.builder().email(email).password(hashPassword(password)).build();
+        User user = User.builder()
+            .username(username)
+            .email(email)
+            .password(hashPassword(password))
+            .build();
         return userRepository.save(user);
     }
+
 
     public Optional<User> getUserById(Long userId) {
         return userRepository.findById(userId);

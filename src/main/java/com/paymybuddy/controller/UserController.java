@@ -23,7 +23,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.registerUser(user.getEmail(), user.getPassword());
+        User createdUser = userService.registerUser(user.getUsername(), user.getEmail(), user.getPassword());
         return ResponseEntity.ok(createdUser);
     }
 
@@ -51,7 +51,7 @@ public class UserController {
             User existingUser = user.get();
             existingUser.setEmail(updatedUser.getEmail());
             existingUser.setPassword(updatedUser.getPassword()); // Hachage appliqué dans le service
-            userService.registerUser(existingUser.getEmail(), existingUser.getPassword());
+            userService.registerUser(existingUser.getUsername(), existingUser.getEmail(), existingUser.getPassword());
             return ResponseEntity.ok(existingUser);
         } else {
             return ResponseEntity.notFound().build();
