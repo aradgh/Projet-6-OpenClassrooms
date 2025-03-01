@@ -11,11 +11,11 @@
         <div class="logo">
             <span>Pay My Buddy</span>
         </div>
-        <form th:action="@{/register}" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Mail" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <button type="submit">S'inscrire</button>
+        <form th:action="@{/register}" method="post" class="login-form">
+            <input type="text" name="username" placeholder="Username" class="login-input" required>
+            <input type="email" name="email" placeholder="Mail" class="login-input" required>
+            <input type="password" name="password" placeholder="Mot de passe" class="login-input" required>
+            <button type="submit" class="login-button">S'inscrire</button>
         </form>
     </div>
 </div>

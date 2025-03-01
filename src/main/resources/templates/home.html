@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Pay My Buddy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav><a th:href="@{/home}">Pay My Buddy</a>
+        <div class="navigation-links">
+            <a th:href="@{/transfer}">Transférer</a>
+            <a th:href="@{/profil}">Profil</a>
+            <a th:href="@{/add-relation}">Ajouter une relation</a>
+            <a th:href="@{/logout}">Se déconnecter</a>
+        </div>
+    </nav>
+</header>
+<div>
+    <form th:action="@{/transfer}" method="post" class="transfer-form">
+        <select name="relation" id="relation" class="transfer-select">
+            <option value="">Sélectionner une relation</option>
+        </select>
+        <input type="text" name="description" placeholder="Description" required>
+        <input type="number" name="amount" placeholder="0€" min="0" required>
+        <button type="submit">Payer</button>
+    </form>
+</div>
+</body>
+</html>

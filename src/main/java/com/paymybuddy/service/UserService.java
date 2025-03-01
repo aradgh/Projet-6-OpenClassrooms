@@ -3,6 +3,9 @@ package com.paymybuddy.service;
 import com.paymybuddy.model.User;
 import com.paymybuddy.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -52,5 +55,16 @@ public class UserService {
 
     private String hashPassword(String password) {
         return passwordEncoder.encode(password);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return org.springframework.security.core.userdetails.User.builder()
+            .username(user.getEmail()) // On utilise l'email pour l'authentification
+            .password(user.getPassword())
+            .roles("USER")
+            .build();
     }
 }

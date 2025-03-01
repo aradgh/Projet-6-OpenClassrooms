@@ -1,9 +1,49 @@
 /* Styles généraux */
 body {
+    max-width: 1440px;
+    max-height: 1024px;
+    margin: auto;
+
+    font-family: Inter, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 30px */
+}
+
+header {
+    height: 164px;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #207FEE;
+}
+
+.navigation-links {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 48px;
+}
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 98vh;
+    height: 100vh;
     font-family: 'Inter', sans-serif;
 }
 
@@ -36,13 +76,19 @@ body {
     margin-bottom: 66px;
 }
 
-form {
+.login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.transfer-form {
+    display: flex;
+    justify-content: center;
+    gap: 42px;
+}
 /* Champs du formulaire */
-input {
+input, select {
     width: 263px;
     padding: 12px 16px;
     border-radius: 8px;
@@ -52,16 +98,23 @@ input {
     font-size: 24px;
     font-weight: 700;
     color: #828282;
+}
+
+.login-input {
     margin-bottom: 21px;
+}
+
+.transfer-select {
+    width: 363px;
+    appearance: none;
+    background: url(../css/assets/chevron-down.svg) no-repeat right #fff;
 }
 
 /* Bouton */
 button {
-    display: block;
     padding: 14px 24px;
     justify-content: center;
     align-items: center;
-    gap: 8px;
     border-radius: 8px;
     background: #207FEE;
     color: white;
@@ -70,9 +123,18 @@ button {
     line-height: 150%;
     border: none;
     cursor: pointer;
-    margin-top: 102px;
 }
 
 button:hover {
     background: #1866c4;
+}
+
+.login-button {
+    display: block;
+    margin-top: 102px;
+    gap: 8px;
+}
+
+.transfer-button {
+    margin-right: 47px;
 }
