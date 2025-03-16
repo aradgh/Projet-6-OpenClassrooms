@@ -16,11 +16,13 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final AccountService accountService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, AccountService accountService) {
         this.userRepository = userRepository;
+        this.accountService = accountService;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -37,6 +39,10 @@ public class UserService implements UserDetailsService {
             .email(email)
             .password(hashPassword(password))
             .build();
+
+        User savedUser = userRepository.save(user);
+        // Créer un compte pour le nouvel utilisateur
+        accountService.createAccount(savedUser);
         return userRepository.save(user);
     }
 

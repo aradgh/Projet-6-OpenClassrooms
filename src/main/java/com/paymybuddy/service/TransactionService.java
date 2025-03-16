@@ -28,8 +28,6 @@ public class TransactionService {
         this.accountService = accountService;
     }
 
-    //    @Transactional
-    // Tester avec ou sans l'annotation pour voir le comportement
     public Transaction createTransaction(Account sender, Account receiver, BigDecimal amount, String description) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Amount must be greater than zero.");
@@ -37,7 +35,7 @@ public class TransactionService {
 
         // Calculer la commission
         BigDecimal commission = amount.multiply(COMMISSION_RATE).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal totalDeduction = amount.add(commission); // Montant total déduit de l'expéditeur
+        BigDecimal totalDeduction = amount.add(commission);
 
         // Déduire le montant du compte de l'expéditeur
         List<Account> senderAccounts = accountService.getAccountsByUserId(sender.getId());
@@ -74,4 +72,9 @@ public class TransactionService {
     public List<Transaction> getTransactionsByReceiverId(Long receiverId) {
         return transactionRepository.findByReceiverId(receiverId);
     }
+
+    public List<Transaction> getTransactionsByUser(Long userId) {
+        return transactionRepository.findBySenderIdOrReceiverId(userId, userId);
+    }
+
 }

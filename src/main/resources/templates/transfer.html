@@ -22,13 +22,42 @@
 </header>
 <div>
     <form th:action="@{/transfer}" method="post" class="transfer-form">
-        <select name="relation" id="relation" class="transfer-select" required>
+        <select name="relation" class="transfer-select" required>
             <option value="">Sélectionner une relation</option>
+            <option th:each="relation : ${connections}"
+                    th:value="${relation.id}"
+                    th:text="${relation.username}">
+            </option>
         </select>
         <input type="text" name="description" placeholder="Description" required>
-        <input type="number" name="amount" placeholder="0€" min="0" required>
+        <input type="number" name="amount" placeholder="0€" min="0" step="0.01" required>
         <button type="submit">Payer</button>
     </form>
+
+    <!-- Tableau récapitulatif des transactions -->
+    <div class="transactions-table">
+        <h2>Mes transactions</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Relations</th>
+                <th>Description</th>
+                <th>Montant</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Pour chaque transaction, on affiche la relation (ici, on suppose que la transaction possède une référence à la relation bénéficiaire), sa description et son montant -->
+            <tr th:each="transaction : ${transactions}">
+                <!-- Si l'ID du compte émetteur est égal à currentAccountId, c'est un envoi -->
+                <td th:text="${transaction.sender.id == currentAccountId ? 'Envoyé' : 'Reçu'}">Type</td>
+                <td th:text="${transaction.receiver.owner.username}">Relation</td>
+                <td th:text="${transaction.description}">Description</td>
+                <td th:text="${transaction.amount + '€'}">Montant</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

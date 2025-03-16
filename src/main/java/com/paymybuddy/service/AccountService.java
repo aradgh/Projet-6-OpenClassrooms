@@ -27,7 +27,7 @@ public class AccountService {
     public Account createAccount(User owner) {
         Account account = new Account();
         account.setOwner(owner);
-        account.setBalance(BigDecimal.ZERO);
+        account.setBalance(new BigDecimal("1000")); // Solde initial de 1000€
         return accountRepository.save(account);
     }
 
