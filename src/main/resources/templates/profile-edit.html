@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier le profil - Pay My Buddy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/transfer}">Pay My Buddy</a>
+        <div class="navigation-links">
+            <a th:href="@{/transfer}">Transférer</a>
+            <a th:href="@{/profile}">Profil</a>
+            <a th:href="@{/add-relation}">Ajouter une relation</a>
+            <a th:href="@{/logout}">Se déconnecter</a>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <form th:action="@{/profile/edit}" method="post" class="profile-form">
+        <div>
+            <label>Username :</label>
+            <input type="text" name="username" th:value="${user.username}" required/>
+        </div>
+        <div>
+            <label>Email :</label>
+            <input type="email" name="email" th:value="${user.email}" required/>
+        </div>
+        <div>
+            <label>Nouveau mot de passe :</label>
+            <input type="password" name="password" placeholder="Laisser vide pour ne pas modifier"/>
+        </div>
+        <button type="submit">Valider</button>
+    </form>
+    <div th:if="${message}" class="success-message">
+        <p th:text="${message}"></p>
+    </div>
+    <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+    </div>
+</div>
+</body>
+</html>

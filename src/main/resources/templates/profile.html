@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil - Pay My Buddy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/transfer}">Pay My Buddy</a>
+        <div class="navigation-links">
+            <a th:href="@{/transfer}">Transférer</a>
+<!--            TODO le mettre en bleu-->
+            <a th:href="@{/profile}">Profil</a>
+            <a th:href="@{/add-relation}">Ajouter une relation</a>
+            <a th:href="@{/logout}">Se déconnecter</a>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="profile-info">
+        <div>
+            <label>Username :</label>
+            <span th:text="${user.username}">Username</span>
+        </div>
+        <div>
+            <label>Mail :</label>
+            <span th:text="${user.email}">Mail</span>
+        </div>
+        <div>
+            <label>Mot de passe :</label>
+            <span>••••••••</span>
+        </div>
+    </div>
+    <div class="profile-actions">
+        <a th:href="@{/profile/edit}" class="btn">Modifier</a>
+    </div>
+    <div th:if="${message}" class="success-message">
+        <p th:text="${message}"></p>
+    </div>
+</div>
+</body>
+</html>

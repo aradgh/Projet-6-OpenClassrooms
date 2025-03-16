@@ -87,4 +87,17 @@ public class UserService implements UserDetailsService {
             .roles("USER")
             .build();
     }
+
+    public User updateProfile(Long userId, String newUsername, String newEmail, String newPassword) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setUsername(newUsername);
+        user.setEmail(newEmail);
+        // Mettre à jour le mot de passe uniquement s'il a été renseigné
+        if (newPassword != null && !newPassword.trim().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+        }
+        return userRepository.save(user);
+    }
+
 }
