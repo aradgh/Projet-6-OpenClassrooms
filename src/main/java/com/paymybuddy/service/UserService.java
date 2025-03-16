@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,19 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(userId).map(User::getConnections)
             .orElseThrow(() -> new IllegalArgumentException("User not found"));
     }
+
+    public void addConnection(User currentUser, User relation) {
+        if (currentUser.getConnections() == null) {
+            currentUser.setConnections(new ArrayList<>());
+        }
+        if (!currentUser.getConnections().contains(relation)) {
+            currentUser.getConnections().add(relation);
+            userRepository.save(currentUser);
+        } else {
+            throw new IllegalArgumentException("Cette relation existe déjà.");
+        }
+    }
+
 
     private String hashPassword(String password) {
         return passwordEncoder.encode(password);
