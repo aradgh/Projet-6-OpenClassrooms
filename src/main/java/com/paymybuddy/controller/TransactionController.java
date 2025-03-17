@@ -2,10 +2,8 @@ package com.paymybuddy.controller;
 
 import com.paymybuddy.model.Account;
 import com.paymybuddy.model.Transaction;
-import com.paymybuddy.model.User;
 import com.paymybuddy.service.AccountService;
 import com.paymybuddy.service.TransactionService;
-import com.paymybuddy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
