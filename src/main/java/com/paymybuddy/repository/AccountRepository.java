@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    // Trouver tous les comptes appartenant à un utilisateur
     List<Account> findByOwnerId(Long ownerId);
 }
