@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil - Pay My Buddy</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,34 +15,41 @@
         <a th:href="@{/transfer}">Pay My Buddy</a>
         <div class="navigation-links">
             <a th:href="@{/transfer}">Transférer</a>
-<!--            TODO le mettre en bleu-->
+            <!-- TODO: le mettre en bleu -->
             <a th:href="@{/profile}">Profil</a>
             <a th:href="@{/add-relation}">Ajouter une relation</a>
             <a th:href="@{/logout}">Se déconnecter</a>
         </div>
     </nav>
 </header>
-<div class="container">
-    <div class="profile-info">
-        <div>
-            <label>Username :</label>
-            <span th:text="${user.username}">Username</span>
+<main>
+    <section class="container" aria-labelledby="profile-heading">
+        <h1 id="profile-heading" class="visually-hidden">Votre Profil</h1>
+        <div class="profile-info">
+            <div class="profile-field">
+                <label for="username">Username :</label>
+                <span id="username" th:text="${user.username}">Username</span>
+            </div>
+            <div class="profile-field">
+                <label for="email">Mail :</label>
+                <span id="email" th:text="${user.email}">Mail</span>
+            </div>
+            <div class="profile-field">
+                <label for="password">Mot de passe :</label>
+                <!-- Affichage du mot de passe sous forme de points -->
+                <span id="password" aria-label="Mot de passe masqué">••••••••</span>
+            </div>
         </div>
-        <div>
-            <label>Mail :</label>
-            <span th:text="${user.email}">Mail</span>
+        <div class="profile-actions">
+            <a th:href="@{/profile/edit}" class="btn">Modifier</a>
         </div>
-        <div>
-            <label>Mot de passe :</label>
-            <span>••••••••</span>
+        <div th:if="${message}" class="success-message" role="alert">
+            <p th:text="${message}"></p>
         </div>
-    </div>
-    <div class="profile-actions">
-        <a th:href="@{/profile/edit}" class="btn">Modifier</a>
-    </div>
-    <div th:if="${message}" class="success-message">
-        <p th:text="${message}"></p>
-    </div>
-</div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 Pay My Buddy</p>
+</footer>
 </body>
 </html>

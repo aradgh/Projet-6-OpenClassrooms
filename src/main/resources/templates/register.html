@@ -1,23 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - Pay My Buddy</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div class="container">
-    <div class="form-container">
-        <div class="logo">
-            <span>Pay My Buddy</span>
+<header>
+    <h1 class="visually-hidden">Inscription sur Pay My Buddy</h1>
+</header>
+<main>
+    <section class="container" aria-labelledby="register-heading">
+        <h2 id="register-heading" class="visually-hidden">Formulaire d'inscription</h2>
+        <div class="form-container">
+            <div class="logo">
+                <span>Pay My Buddy</span>
+            </div>
+            <form th:action="@{/register}" method="post" class="register-form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" placeholder="Username" class="login-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Adresse mail</label>
+                    <input type="email" id="email" name="email" placeholder="Mail" class="login-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" placeholder="Mot de passe" class="login-input" required>
+                </div>
+                <button type="submit" class="login-button">S'inscrire</button>
+            </form>
+            <!-- Zone de messages si besoin -->
+            <div th:if="${error}" class="error-message" role="alert">
+                <p th:text="${error}"></p>
+            </div>
+            <div th:if="${message}" class="success-message" role="alert">
+                <p th:text="${message}"></p>
+            </div>
         </div>
-        <form th:action="@{/register}" method="post" class="login-form">
-            <input type="text" name="username" placeholder="Username" class="login-input" required>
-            <input type="email" name="email" placeholder="Mail" class="login-input" required>
-            <input type="password" name="password" placeholder="Mot de passe" class="login-input" required>
-            <button type="submit" class="login-button">S'inscrire</button>
-        </form>
-    </div>
-</div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 Pay My Buddy</p>
+</footer>
 </body>
 </html>

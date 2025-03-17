@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier le profil - Pay My Buddy</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,28 +21,34 @@
         </div>
     </nav>
 </header>
-<div class="container">
-    <form th:action="@{/profile/edit}" method="post" class="profile-form">
-        <div>
-            <label>Username :</label>
-            <input type="text" name="username" th:value="${user.username}" required/>
+<main>
+    <section class="container" aria-labelledby="edit-profile-heading">
+        <h1 id="edit-profile-heading" class="visually-hidden">Modifier votre profil</h1>
+        <form th:action="@{/profile/edit}" method="post" class="profile-form">
+            <div class="form-group">
+                <label for="username">Username :</label>
+                <input type="text" id="username" name="username" th:value="${user.username}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" th:value="${user.email}" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Nouveau mot de passe :</label>
+                <input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas modifier">
+            </div>
+            <button type="submit" class="btn">Valider</button>
+        </form>
+        <div th:if="${message}" class="success-message" role="alert">
+            <p th:text="${message}"></p>
         </div>
-        <div>
-            <label>Email :</label>
-            <input type="email" name="email" th:value="${user.email}" required/>
+        <div th:if="${error}" class="error-message" role="alert">
+            <p th:text="${error}"></p>
         </div>
-        <div>
-            <label>Nouveau mot de passe :</label>
-            <input type="password" name="password" placeholder="Laisser vide pour ne pas modifier"/>
-        </div>
-        <button type="submit">Valider</button>
-    </form>
-    <div th:if="${message}" class="success-message">
-        <p th:text="${message}"></p>
-    </div>
-    <div th:if="${error}" class="error-message">
-        <p th:text="${error}"></p>
-    </div>
-</div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2025 Pay My Buddy</p>
+</footer>
 </body>
 </html>

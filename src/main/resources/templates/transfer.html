@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Pay My Buddy</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,53 +11,40 @@
 </head>
 <body>
 <header>
-    <nav><a th:href="@{/transfer}">Pay My Buddy</a>
+    <nav aria-label="Navigation principale">
+        <a th:href="@{/transfer}" class="logo">Pay My Buddy</a>
         <div class="navigation-links">
-<!--           TODO Le laisser en bleu-->
-            <a th:href="@{/transfer}">Transférer</a>
+            <a th:href="@{/transfer}" class="active">Transférer</a>
             <a th:href="@{/profile}">Profil</a>
             <a th:href="@{/add-relation}">Ajouter une relation</a>
             <a th:href="@{/logout}">Se déconnecter</a>
         </div>
     </nav>
 </header>
-<div>
-    <form th:action="@{/transfer}" method="post" class="transfer-form">
-        <select name="relation" class="transfer-select" required>
-            <option value="">Sélectionner une relation</option>
-            <option th:each="relation : ${connections}"
-                    th:value="${relation.id}"
-                    th:text="${relation.username}">
-            </option>
-        </select>
-        <input type="text" name="description" placeholder="Description" required>
-        <input type="number" name="amount" placeholder="0€" min="0" step="0.01" required>
-        <button type="submit">Payer</button>
-    </form>
-
-    <!-- Tableau récapitulatif des transactions -->
-    <div class="transactions-table">
-        <h2>Mes transactions</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Type</th>
-                <th>Relations</th>
-                <th>Description</th>
-                <th>Montant</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="transaction : ${transactions}">
-                <!-- Si l'ID du compte émetteur est égal à currentAccountId, c'est un envoi -->
-                <td th:text="${transaction.sender.id == currentAccountId ? 'Envoyé' : 'Reçu'}">Type</td>
-                <td th:text="${transaction.receiver.owner.username}">Relation</td>
-                <td th:text="${transaction.description}">Description</td>
-                <td th:text="${transaction.amount + '€'}">Montant</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-</body>
-</html>
+<main>
+    <!-- Formulaire de transfert -->
+    <section aria-labelledby="transfer-heading">
+        <h1 id="transfer-heading" class="visually-hidden">Transférer de l'argent</h1>
+        <form th:action="@{/transfer}" method="post" class="transfer-form">
+            <div class="form-group">
+                <label for="relation-select">Relation</label>
+                <select id="relation-select" name="relation" class="transfer-select" required>
+                    <option value="">Sélectionner une relation</option>
+                    <option th:each="relation : ${connections}"
+                            th:value="${relation.id}"
+                            th:text="${relation.username}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" placeholder="Description" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Montant</label>
+                <input type="number" id="amount" name="amount" placeholder="0€" min="0" step="0.01" required>
+            </div>
+            <button type="submit" class="transfer-button">Payer</button>
+        </form>
+    </section>
+    <!-- Ta
