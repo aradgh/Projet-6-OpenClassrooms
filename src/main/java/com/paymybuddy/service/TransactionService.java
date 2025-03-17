@@ -6,6 +6,7 @@ import com.paymybuddy.model.User;
 import com.paymybuddy.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
+@Transactional
 public class TransactionService {
 
     private static final BigDecimal COMMISSION_RATE = new BigDecimal("0.005"); // 0,5%
