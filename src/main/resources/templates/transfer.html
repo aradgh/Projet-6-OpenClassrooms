@@ -10,11 +10,10 @@
 </head>
 <body>
 <header>
-    <nav>
+    <nav aria-label="Navigation principale">
         <a th:href="@{/transfer}">Pay My Buddy</a>
         <div class="navigation-links">
-            <!-- Lien vers la page de transfert, actif par défaut -->
-            <a th:href="@{/transfer}" aria-current="page">Transférer</a>
+            <a th:href="@{/transfer}" aria-current="page" class="active-navigation-link">Transférer</a>
             <a th:href="@{/profile}">Profil</a>
             <a th:href="@{/add-relation}">Ajouter une relation</a>
             <a th:href="@{/logout}">Se déconnecter</a>
@@ -24,7 +23,7 @@
 <main>
     <section>
         <form th:action="@{/transfer}" method="post" class="transfer-form">
-            <label for="relation-select">Sélectionnez une relation</label>
+            <label for="relation-select" class="visually-hidden">Sélectionnez une relation</label>
             <select id="relation-select" name="relation" class="transfer-select" required>
                 <option value="">Sélectionner une relation</option>
                 <option th:each="relation : ${connections}"
@@ -32,16 +31,16 @@
                         th:text="${relation.username}">
                 </option>
             </select>
-            <label for="description">Description</label>
+            <label for="description" class="visually-hidden">Description</label>
             <input type="text" id="description" name="description" placeholder="Description" required>
-            <label for="amount">Montant</label>
-            <input type="number" id="amount" name="amount" placeholder="0€" min="0" step="0.01" required>
-            <button type="submit">Payer</button>
+            <label for="amount" class="visually-hidden">Montant</label>
+            <input type="number" id="amount" name="amount" placeholder="0€" min="0" required>
+            <button type="submit" class="blue-button">Payer</button>
         </form>
     </section>
 
     <section class="transactions-table" aria-labelledby="transactions-heading">
-        <h2 id="transactions-heading">Mes transactions</h2>
+        <h2 id="transactions-heading" class="transactions-heading">Mes transactions</h2>
         <table>
             <thead>
             <tr>
@@ -63,5 +62,8 @@
         </table>
     </section>
 </main>
+<footer class="visually-hidden">
+    <p>&copy; 2025 Pay My Buddy</p>
+</footer>
 </body>
 </html>

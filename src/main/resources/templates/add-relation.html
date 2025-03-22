@@ -12,11 +12,11 @@
 <body>
 <header>
     <nav aria-label="Navigation principale">
-        <a th:href="@{/transfer}" class="logo">Pay My Buddy</a>
+        <a th:href="@{/transfer}">Pay My Buddy</a>
         <div class="navigation-links">
             <a th:href="@{/transfer}">Transférer</a>
             <a th:href="@{/profile}">Profil</a>
-            <a th:href="@{/add-relation}" class="active">Ajouter une relation</a>
+            <a th:href="@{/add-relation}" aria-current="page" class="active-navigation-link">Ajouter une relation</a>
             <a th:href="@{/logout}">Se déconnecter</a>
         </div>
     </nav>
@@ -25,14 +25,12 @@
 <main>
     <section aria-labelledby="add-relation-heading">
         <h1 id="add-relation-heading" class="visually-hidden">Ajouter une relation</h1>
-        <form th:action="@{/add-relation}" method="post" class="relation-form">
-            <div class="form-group">
+        <form th:action="@{/add-relation}" method="post" class="add-relation-form">
+            <div class="add-relation-form-group">
                 <label for="email">Chercher une relation</label>
-                <input type="email" id="email" name="email" placeholder="Saisir une adresse mail" required aria-required="true">
+                <input type="email" id="email" name="email" placeholder="Saisir une adresse mail" class="add-relation-input" required aria-required="true">
             </div>
-            <div class="form-group">
-                <button type="submit">Ajouter</button>
-            </div>
+                <button type="submit" class="orange-button">Ajouter</button>
         </form>
 
         <div th:if="${message}" class="success-message" role="alert">
@@ -44,7 +42,7 @@
     </section>
 </main>
 
-<footer>
+<footer class="visually-hidden">
     <p>&copy; 2025 Pay My Buddy</p>
 </footer>
 </body>

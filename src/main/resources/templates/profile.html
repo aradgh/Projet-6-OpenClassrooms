@@ -11,44 +11,42 @@
 </head>
 <body>
 <header>
-    <nav>
+    <nav aria-label="Navigation principale">
         <a th:href="@{/transfer}">Pay My Buddy</a>
         <div class="navigation-links">
             <a th:href="@{/transfer}">Transférer</a>
-            <!-- TODO: le mettre en bleu -->
-            <a th:href="@{/profile}">Profil</a>
+            <a th:href="@{/profile}" aria-current="page" class="active-navigation-link">Profil</a>
             <a th:href="@{/add-relation}">Ajouter une relation</a>
             <a th:href="@{/logout}">Se déconnecter</a>
         </div>
     </nav>
 </header>
 <main>
-    <section class="container" aria-labelledby="profile-heading">
+    <section aria-labelledby="profile-heading">
         <h1 id="profile-heading" class="visually-hidden">Votre Profil</h1>
-        <div class="profile-info">
-            <div class="profile-field">
-                <label for="username">Username :</label>
-                <span id="username" th:text="${user.username}">Username</span>
-            </div>
-            <div class="profile-field">
-                <label for="email">Mail :</label>
-                <span id="email" th:text="${user.email}">Mail</span>
-            </div>
-            <div class="profile-field">
-                <label for="password">Mot de passe :</label>
-                <!-- Affichage du mot de passe sous forme de points -->
-                <span id="password" aria-label="Mot de passe masqué">••••••••</span>
-            </div>
-        </div>
-        <div class="profile-actions">
-            <a th:href="@{/profile/edit}" class="btn">Modifier</a>
+        <div class="profile-info-container">
+            <table class="profile-info-table">
+                <tr>
+                    <td class="profile-label">Username</td>
+                    <td><span th:text="${user.username}">Username</span></td>
+                </tr>
+                <tr>
+                    <td class="profile-label">Mail</td>
+                    <td><span th:text="${user.email}">Mail</span></td>
+                </tr>
+                <tr>
+                    <td class="profile-label">Mot de passe</td>
+                    <td><span aria-label="Mot de passe masqué">••••••••</span></td>
+                </tr>
+            </table>
+            <button type="button" class="orange-button" th:onclick="|window.location.href='@{/profile/edit}'|">Modifier</button>
         </div>
         <div th:if="${message}" class="success-message" role="alert">
             <p th:text="${message}"></p>
         </div>
     </section>
 </main>
-<footer>
+<footer class="visually-hidden">
     <p>&copy; 2025 Pay My Buddy</p>
 </footer>
 </body>

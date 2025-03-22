@@ -7,8 +7,8 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<header>
-    <h1 class="visually-hidden">Inscription sur Pay My Buddy</h1>
+<header class="visually-hidden">
+    <h1>Inscription sur Pay My Buddy</h1>
 </header>
 <main>
     <section class="container" aria-labelledby="register-heading">
@@ -18,21 +18,15 @@
                 <span>Pay My Buddy</span>
             </div>
             <form th:action="@{/register}" method="post" class="register-form">
-                <div class="form-group">
-                    <label for="username">Nom d'utilisateur</label>
-                    <input type="text" id="username" name="username" placeholder="Username" class="login-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Adresse mail</label>
-                    <input type="email" id="email" name="email" placeholder="Mail" class="login-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="Mot de passe" class="login-input" required>
-                </div>
-                <button type="submit" class="login-button">S'inscrire</button>
+                <label for="username" class="visually-hidden">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" placeholder="Username" class="login-input" required>
+                <label for="email" class="visually-hidden">Adresse mail</label>
+                <input type="email" id="email" name="email" placeholder="Mail" class="login-input" required>
+                <label for="password" class="visually-hidden">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" class="login-input"
+                       required>
+                <button type="submit" class="login-button blue-button">S'inscrire</button>
             </form>
-            <!-- Zone de messages si besoin -->
             <div th:if="${error}" class="error-message" role="alert">
                 <p th:text="${error}"></p>
             </div>
@@ -42,7 +36,7 @@
         </div>
     </section>
 </main>
-<footer>
+<footer class="visually-hidden">
     <p>&copy; 2025 Pay My Buddy</p>
 </footer>
 </body>
