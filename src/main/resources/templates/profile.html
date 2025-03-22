@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - Pay My Buddy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav aria-label="Navigation principale">
+        <a th:href="@{/transfer}">Pay My Buddy</a>
+        <div class="navigation-links">
+            <a th:href="@{/transfer}">Transférer</a>
+            <a th:href="@{/profile}" aria-current="page" class="active-navigation-link">Profil</a>
+            <a th:href="@{/add-relation}">Ajouter une relation</a>
+            <a th:href="@{/logout}">Se déconnecter</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <section aria-labelledby="profile-heading">
+        <h1 id="profile-heading" class="visually-hidden">Votre Profil</h1>
+        <div class="profile-info-container">
+            <table class="profile-info-table">
+                <tr>
+                    <td class="profile-label">Username</td>
+                    <td><span th:text="${user.username}">Username</span></td>
+                </tr>
+                <tr>
+                    <td class="profile-label">Mail</td>
+                    <td><span th:text="${user.email}">Mail</span></td>
+                </tr>
+                <tr>
+                    <td class="profile-label">Mot de passe</td>
+                    <td><span aria-label="Mot de passe masqué">••••••••</span></td>
+                </tr>
+            </table>
+            <button type="button" class="orange-button" th:onclick="|window.location.href='@{/profile/edit}'|">Modifier</button>
+        </div>
+        <div th:if="${message}" class="success-message" role="alert">
+            <p th:text="${message}"></p>
+        </div>
+    </section>
+</main>
+<footer class="visually-hidden">
+    <p>&copy; 2025 Pay My Buddy</p>
+</footer>
+</body>
+</html>

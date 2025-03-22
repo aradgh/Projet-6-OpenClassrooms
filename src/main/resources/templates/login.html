@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Pay My Buddy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="visually-hidden">
+    <h1>Connexion à Pay My Buddy</h1>
+</header>
+<main>
+    <div class="container">
+        <section class="form-container" aria-labelledby="login-heading">
+            <h2 id="login-heading" class="visually-hidden">Se connecter</h2>
+            <div class="logo">
+                <span>Pay My Buddy</span>
+            </div>
+            <form th:action="@{/login}" method="post" class="login-form">
+                <label for="email" class="visually-hidden">Adresse e-mail</label>
+                <input type="email" id="email" name="email" placeholder="Mail" class="login-input" required
+                       aria-required="true">
+                <label for="password" class="visually-hidden">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" class="login-input"
+                       required aria-required="true">
+                <button type="submit" class="login-button blue-button">Se connecter</button>
+            </form>
+            <div th:if="${error}" class="error-message" role="alert">
+                <p th:text="${error}"></p>
+            </div>
+            <div th:if="${message}" class="success-message" role="alert">
+                <p th:text="${message}"></p>
+            </div>
+            <p>Pas encore inscrit ? <a th:href="@{/register}">Créer un compte</a></p>
+        </section>
+    </div>
+</main>
+<footer class="visually-hidden">
+    <p>&copy; 2025 Pay My Buddy</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier le profil - Pay My Buddy</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav aria-label="Navigation principale">
+        <a th:href="@{/transfer}">Pay My Buddy</a>
+        <div class="navigation-links">
+            <a th:href="@{/transfer}">Transférer</a>
+            <a th:href="@{/profile}" aria-current="page" class="active-navigation-link">Profil</a>
+            <a th:href="@{/add-relation}">Ajouter une relation</a>
+            <a th:href="@{/logout}">Se déconnecter</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <section aria-labelledby="edit-profile-heading">
+        <h1 id="edit-profile-heading" class="visually-hidden">Modifier votre profil</h1>
+        <form th:action="@{/profile/edit}" method="post">
+            <div class="profile-info-container">
+                <table class="profile-info-table">
+                    <tr>
+                        <td class="profile-label"><label for="username">Username :</label></td>
+                        <td><input type="text" id="username" name="username" th:value="${user.username}" required></td>
+                    </tr>
+                    <tr>
+                        <td class="profile-label"><label for="email">Mail :</label></td>
+                        <td><input type="email" id="email" name="email" th:value="${user.email}" required></td>
+                    </tr>
+                    <tr>
+                        <td class="profile-label"><label for="password">Nouveau mot de passe :</label></td>
+                        <td><input type="password" id="password" name="password"
+                                   placeholder="Laisser vide pour ne pas modifier"></td>
+                    </tr>
+                </table>
+                <button type="submit" class="orange-button">Valider</button>
+            </div>
+        </form>
+        <div th:if="${message}" class="success-message" role="alert">
+            <p th:text="${message}"></p>
+        </div>
+        <div th:if="${error}" class="error-message" role="alert">
+            <p th:text="${error}"></p>
+        </div>
+    </section>
+</main>
+<footer class="visually-hidden">
+    <p>&copy; 2025 Pay My Buddy</p>
+</footer>
+</body>
+</html>
