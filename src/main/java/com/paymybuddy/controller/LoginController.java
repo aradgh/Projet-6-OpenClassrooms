@@ -18,6 +18,6 @@ public class LoginController {
         if (logout != null) {
             model.addAttribute("message", "Vous avez été déconnecté avec succès.");
         }
-        return "login"; // Affiche la page login.html dans templates
+        return "login";
     }
 }

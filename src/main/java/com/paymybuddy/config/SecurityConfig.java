@@ -20,7 +20,7 @@ public class SecurityConfig {
             .formLogin(login -> login
                 .loginPage("/login")
                 .usernameParameter("email")  // Indique que l'identifiant se trouve dans le paramètre "email"
-                .defaultSuccessUrl("/transfer", true) // Redirige vers /home après connexion réussie
+                .defaultSuccessUrl("/transfer", true) // Redirige vers /transfer après connexion réussie
                 .permitAll()
             )
             .logout(logout -> logout

@@ -59,7 +59,7 @@ public class ProfileController {
             return "redirect:/profile";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            // En cas d'erreur, rechargez le formulaire d'édition avec l'utilisateur actuel
+            // En cas d'erreur, recharger le formulaire d'édition avec l'utilisateur actuel
             User updatedUser = userService.getUserByEmail(userDetails.getUsername());
             model.addAttribute("user", updatedUser);
             return "profile-edit";

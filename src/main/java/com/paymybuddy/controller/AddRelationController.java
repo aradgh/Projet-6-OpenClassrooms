@@ -31,7 +31,7 @@ public class AddRelationController {
         try {
             // Récupère l'utilisateur connecté (celui qui ajoute une relation)
             User currentUser = userService.getUserByEmail(userDetails.getUsername());
-            // Récupère l'utilisateur à ajouter en recherchant par email
+            // Récupère la relation à ajouter en recherchant par email
             User relation = userService.getUserByEmail(email);
 
             // Vérifie que l'utilisateur ne tente pas de s'ajouter lui-même

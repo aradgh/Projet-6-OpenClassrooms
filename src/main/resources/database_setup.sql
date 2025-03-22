@@ -7,7 +7,7 @@ CREATE DATABASE pay_my_buddy;
 -- Sélection de la base de données
 USE pay_my_buddy;
 
--- Création de la table User (sans colonne username)
+-- Création de la table User
 CREATE TABLE User (
                       id       BIGINT AUTO_INCREMENT PRIMARY KEY,
                       username VARCHAR(255) NOT NULL,
