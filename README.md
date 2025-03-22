@@ -1,4 +1,6 @@
 # Projet 6 - OpenClassrooms
+## Script Setup SQL
+src/main/resources/database_setup.sql
 
 ## Modèle Physique de Données (MPD)
 
