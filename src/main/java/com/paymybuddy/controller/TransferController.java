@@ -44,6 +44,7 @@ public class TransferController {
         model.addAttribute("transactions", transactions);
         model.addAttribute("connections", connections);
         model.addAttribute("currentAccountId", currentAccount.getId());
+        model.addAttribute("currentBalance", currentAccount.getBalance());
         return "transfer";
     }
 

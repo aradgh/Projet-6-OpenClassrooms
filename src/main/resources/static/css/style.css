@@ -186,6 +186,16 @@ button {
 }
 
 /*Transactions table */
+.account-balance {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+}
+
+.account-balance p {
+    margin-top: 0;
+}
+
 .transactions-heading {
     color: #000;
     font-family: 'Inter', serif;
