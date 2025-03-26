@@ -2,6 +2,16 @@
 ## Script Setup SQL
 src/main/resources/database_setup.sql
 
+## Comptes utilisateurs de test
+
+| Username | Password |
+|----------|----------|
+| alice@example.com    | password |
+| bob@example.com    | password    |
+| charlie@example.com    | password    |
+| david@example.com    | password    |
+| eve@example.com                     |    password      |
+
 ## Modèle Physique de Données (MPD)
 
 Voici le schéma de la base de données :
